@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "chatgpt-exp"
+version = "0.1.0"
+description = ""
+authors = ["HB"]
+readme = "README.md"
+packages = [{include = "chatgpt_exp", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+docx2txt = "^0.8"
+openai = "^0.27.4"
+
+[tool.poetry.scripts]
+chatgpt_exp = "chatgpt_exp:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
