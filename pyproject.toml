@@ -10,9 +10,13 @@ packages = [{include = "chatgpt_exp", from = "src"}]
 python = "^3.11"
 docx2txt = "^0.8"
 openai = "^0.27.4"
+numpy = "^1.24.2"
 
 [tool.poetry.scripts]
 chatgpt_exp = "chatgpt_exp:main"
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
 
 [build-system]
 requires = ["poetry-core"]

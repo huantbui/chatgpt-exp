@@ -1,30 +1,24 @@
 import openai
 
+from chatgpt_exp.job_description import read_job_description
+from chatgpt_exp.resume import read_resume
+
+API_KEY = "YOUR_API_KEY_HERE"
+
+
 def main():
     """Entry point for the application script"""
-    openai.api_key = "YOUR_API_KEY_HERE"
+    openai.api_key = API_KEY
     model_engine = "gpt-3.5-turbo"
-    print("Hello! Welcome to ChatGPT Experiment, please fill out the promt to start convo with our ChatGPT")
-    # response = openai.ChatCompletion.create(
-    #     model='gpt-3.5-turbo',
-    #     messages=[
-    #         {"role": "system", "content": "You are a helpful assistant."},
-    #         {"role": "user", "content": "Hello, ChatGPT!"},
-    #     ])
-    # message = response.choices[0]['message']
-    # print("{}: {}".format(message['role'], message['content']))
-
-    messages = [{"role": "system", "content":
-                "You are a intelligent assistant."}]
-    while True:
-        message = input("You: ")
-        if message:
-            messages.append(
-                {"role": "user", "content": message},
-            )
-            chat = openai.ChatCompletion.create(
-                model=model_engine, messages=messages
-            )
-        reply = chat.choices[0].message.content
-        print(f"ChatGPT: {reply}")
-        messages.append({"role": "assistant", "content": reply})
+    print(read_job_description())
+    print(read_resume())
+    response = openai.ChatCompletion.create(
+        model=model_engine,
+        messages=[
+            {"role": "system", "content": "You are an interviewer."},
+            {"role": "user", "content": read_job_description()},
+            {"role": "user", "content": read_resume()},
+            {"role": "user", "content": "is this resume a good fit for the job description?"},
+        ])
+    message = response.choices[0]['message']
+    print("{}: {}".format(message['role'], message['content']))
