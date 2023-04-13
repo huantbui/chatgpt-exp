@@ -23,7 +23,7 @@ def main():
                 {"role": "user", "content": message},
             )
             chat = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo", messages=messages
+                model=model_engine, messages=messages
             )
         reply = chat.choices[0].message.content
         print(f"ChatGPT: {reply}")
