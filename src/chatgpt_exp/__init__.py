@@ -18,7 +18,8 @@ def main():
             {"role": "system", "content": "You are an interviewer."},
             {"role": "user", "content": read_job_description()},
             {"role": "user", "content": read_resume()},
-            {"role": "user", "content": "is this resume a good fit for the job description?"},
+            {"role": "user", "content": "Is this resume a good fit for the job description?"},
+            {"role": "user", "content": "Based on this resume compare to the job description, what are some questions that we can ask?"},
         ])
     message = response.choices[0]['message']
     print("{}: {}".format(message['role'], message['content']))
